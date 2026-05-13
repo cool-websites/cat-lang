@@ -3,25 +3,74 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cat – Fast Standalone Language</title>
+  <title>cat – A fast, lightweight programming language</title>
   <style>
     body {
-      font-family: system-ui, -apple-system, sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f7f7f7;
+      color: #333;
+    }
+
+    header {
+      background: #0366d6;
+      color: white;
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8em;
+      font-weight: 500;
+    }
+
+    nav a {
+      color: inherit;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
       max-width: 800px;
       margin: 40px auto;
-      padding: 20px;
-      line-height: 1.5;
+      padding: 0 20px;
     }
-    h1 { color: #0366d6; }
+
+    h2 {
+      color: #0366d6;
+      margin-top: 30px;
+    }
+
+    h3 {
+      color: #24292f;
+      margin-top: 20px;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+
     pre {
       background: #f4f4f4;
       padding: 12px;
       border-radius: 4px;
       overflow-x: auto;
+      margin: 10px 0;
     }
+
     code {
       font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
     }
+
     .button {
       display: inline-block;
       padding: 10px 20px;
@@ -32,45 +81,461 @@
       margin: 10px 0;
       font-weight: 500;
     }
-    .meta {
+
+    .sandbox {
       margin-top: 30px;
+      padding: 15px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    textarea {
+      width: 100%;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 14px;
+      color: #24292f;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+    }
+
+    button {
+      margin-top: 8px;
+      padding: 8px 16px;
+      background: #0366d6;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    button:hover {
+      background: #025cc0;
+    }
+
+    .output {
+      margin-top: 10px;
+      padding: 12px;
+      background: #f4f4f4;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      color: #24292f;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      min-height: 20px;
+      white-space: pre-wrap;
+    }
+
+    .meta {
+      margin-top: 40px;
       font-size: 0.9em;
       color: #666;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #666;
+      font-size: 0.9em;
+      margin-top: 40px;
     }
   </style>
 </head>
 <body>
-  <h1>cat</h1>
-  <p>
-    A fast, lightweight, standalone programming language using the <code>.cat</code> file extension.
-  </p>
 
-  <h2>Example</h2>
-  <pre>
+  <header>
+    <h1>cat</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#tutorial">Tutorial</a>
+      <a href="#sandbox">Sandbox</a>
+      <a href="https://github.com/cool-websites/cat-lang" target="_blank">GitHub</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section id="about">
+      <h2>About cat</h2>
+      <p>
+        <code>cat</code> is a small, fast, and lightweight programming language that uses
+        the <code>.cat</code> file extension. It is designed to be simple and easy to learn,
+        while still being powerful enough for scripts and small utilities.
+      </p>
+      <p>
+        The <code>cat</code> interpreter reads <code>.cat</code> files and runs them directly.
+        It is compiled to a small binary for each operating system (Linux, macOS, Windows),
+        so you can use it without installing a heavy runtime or virtual machine.
+      </p>
+    </section>
+
+    <section id="tutorial">
+      <h2>cat language tutorial</h2>
+      <p>
+        Here are some basic examples to show you how to code with <code>cat</code>.
+      </p>
+
+      <h3>1. Variables and math</h3>
+      <p>
+        Create variables and perform basic arithmetic:
+      </p>
+      <pre>
 x = 42;
 y = x + 8;
 print(x);  // 42
 print(y);  // 50
-  </pre>
+      </pre>
+      <p>
+        You can use <code>+</code>, <code>-</code>, <code>*</code>, and <code>/</code>
+        to perform math.
+      </p>
 
-  <h2>Download</h2>
-  <p>
-    <a href="https://github.com/cool-websites/cat-lang/releases/latest" class="button">
-      Download Latest Release
-    </a>
-  </p>
+      <h3>2. Printing text</h3>
+      <p>
+        Use <code>print(...)</code> to show values or text in the terminal.
+      </p>
+      <pre>
+name = "Whiskers";
+print("Hello, I am " + name);
+      </pre>
 
-  <h2>Features</h2>
-  <ul>
-    <li>Standalone C binary (no runtime needed).</li>
-    <li>Very small executable size.</li>
-    <li>Simple, readable syntax for fast scripts.</li>
-  </ul>
+      <h3>3. Conditions (if/else)</h3>
+      <p>
+        Branch the flow of your program with conditions:
+      </p>
+      <pre>
+age = 5;
+if age > 3:
+    print("Old cat.");
+else:
+    print("Kitten.");
+      </pre>
 
-  <p class="meta">
-    Built in C, version 1.0.0 (V1).  
-    Project repo: 
-    <a href="https://github.com/cool-websites/cat-lang">github.com/cool-websites/cat-lang</a>.
-  </p>
+      <h3>4. Loops (while)</h3>
+      <p>
+        Repeat code with a <code>while</code> loop:
+      </p>
+      <pre>
+i = 0;
+while i < 3:
+    print("Meow");
+    i = i + 1;
+      </pre>
+    </section>
+
+    <section id="download">
+      <h2>Download cat</h2>
+      <p>
+        <code>cat</code> is available as pre‑built binaries for Linux, macOS, and Windows.
+        You can download it from GitHub without installing any build tools.
+      </p>
+      <p>
+        Visit the Releases page and download the package that matches your operating system:
+      </p>
+      <pre>https://github.com/cool-websites/cat-lang/releases/latest</pre>
+      <p>
+        After downloading:
+      </p>
+      <ol>
+        <li>Unpack the archive (zip / tar file).</li>
+        <li>Place the <code>cat</code> binary (or <code>cat.exe</code> on Windows)
+           into a folder that is in your system’s PATH, or keep it in a chosen location.</li>
+        <li>Open a terminal and run:
+           <pre>cat path/to/your/file.cat</pre>
+        </li>
+      </ol>
+    </section>
+
+    <section id="sandbox" class="sandbox">
+      <h2>Try cat in the browser</h2>
+      <p>
+        Test your <code>.cat</code> code directly in this sandbox. No installation required.
+      </p>
+
+      <textarea id="cat-editor" rows="10" spellcheck="false">
+x = 42;
+y = x + 8;
+print(x);
+print(y);
+      </textarea>
+
+      <button id="run-cat">Run cat code</button>
+
+      <div id="cat-output" class="output">
+<!-- Output will appear here -->
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>
+      The official <code>cat</code> language project is hosted on GitHub:
+      <a href="https://github.com/cool-websites/cat-lang" target="_blank">
+        https://github.com/cool-websites/cat-lang
+      </a>.
+      For more documentation and updates, visit this site.
+    </p>
+  </footer>
+
+  <script>
+    // Simple in‑browser cat evaluator (subset)
+    function evalCat(code) {
+      const env = new Map();
+      const output = [];
+
+      function report(msg) {
+        output.push(String(msg) + "\n");
+      }
+
+      function tokenize(code) {
+        const tokens = [];
+        let i = 0;
+        while (i < code.length) {
+          const c = code[i];
+          if (/\s/.test(c)) {
+            i += 1;
+            continue;
+          }
+          if (/[a-zA-Z_]/.test(c)) {
+            let start = i;
+            while (i < code.length && /[a-zA-Z0-9_]/.test(code[i])) i += 1;
+            tokens.push({ t: "ID", v: code.slice(start, i) });
+            continue;
+          }
+          if (/[0-9]/.test(c)) {
+            let start = i;
+            while (i < code.length && /[0-9]/.test(code[i])) i += 1;
+            tokens.push({ t: "INT", v: parseInt(code.slice(start, i)) });
+            continue;
+          }
+          if (c === "=") {
+            tokens.push({ t: "ASSIGN", v: c });
+            i += 1;
+            continue;
+          }
+          if (c === "+") {
+            tokens.push({ t: "PLUS", v: c });
+            i += 1;
+            continue;
+          }
+          if (c === "-") {
+            tokens.push({ t: "MINUS", v: c });
+            i += 1;
+            continue;
+          }
+          if (c === "*") {
+            tokens.push({ t: "TIMES", v: c });
+            i += 1;
+            continue;
+          }
+          if (c === "/") {
+            tokens.push({ t: "DIV", v: c });
+            i += 1;
+            continue;
+          }
+          if (c === ";") {
+            tokens.push({ t: "SEMI", v: c });
+            i += 1;
+            continue;
+          }
+          if (c === "(") {
+            tokens.push({ t: "LPAREN", v: c });
+            i += 1;
+            continue;
+          }
+          if (c === ")") {
+            tokens.push({ t: "RPAREN", v: c });
+            i += 1;
+            continue;
+          }
+          if (c === "p" && code.slice(i, i + 4) === "print") {
+            tokens.push({ t: "PRINT", v: "print" });
+            i += 4;
+            continue;
+          }
+          if (c === "i" && code.slice(i, i + 2) === "if") {
+            tokens.push({ t: "IF", v: "if" });
+            i += 2;
+            continue;
+          }
+          if (c === "e" && code.slice(i, i + 4) === "else") {
+            tokens.push({ t: "ELSE", v: "else" });
+            i += 4;
+            continue;
+          }
+          if (c === "w" && code.slice(i, i + 5) === "while") {
+            tokens.push({ t: "WHILE", v: "while" });
+            i += 5;
+            continue;
+          }
+          report("Unexpected char: " + c);
+          i += 1;
+        }
+        return tokens;
+      }
+
+      function getValue(token) {
+        if (token.t === "INT") return token.v;
+        if (token.t === "ID") return env.get(token.v) ?? 0;
+        return 0;
+      }
+
+      function evalExpr(tokens, i) {
+        if (i >= tokens.length) return [0, i];
+        const t = tokens[i];
+        if (t.t === "INT" || t.t === "ID") {
+          const val = getValue(t);
+          return [val, i + 1];
+        }
+        let [lhs, j] = evalExpr(tokens, i);
+        if (j >= tokens.length) return [lhs, j];
+        const op = tokens[j];
+        if (op.t === "PLUS") {
+          let [rhs, k] = evalExpr(tokens, j + 1);
+          return [lhs + rhs, k];
+        } else if (op.t === "MINUS") {
+          let [rhs, k] = evalExpr(tokens, j + 1);
+          return [lhs - rhs, k];
+        } else if (op.t === "TIMES") {
+          let [rhs, k] = evalExpr(tokens, j + 1);
+          return [lhs * rhs, k];
+        } else if (op.t === "DIV") {
+          let [rhs, k] = evalExpr(tokens, j + 1);
+          if (rhs === 0) {
+            report("Divide by zero");
+            return [0, k];
+          }
+          return [lhs / rhs, k];
+        }
+        return [lhs, j];
+      }
+
+      function runStmt(tokens, i) {
+        if (i >= tokens.length) return i;
+        const t = tokens[i];
+        if (t.t === "PRINT") {
+          i += 1;
+          if (i < tokens.length && tokens[i].t === "LPAREN") {
+            i += 1;
+            const [val, j] = evalExpr(tokens, i);
+            i = j;
+            if (i < tokens.length && tokens[i].t === "RPAREN") i += 1;
+            report(val);
+          }
+          if (i < tokens.length && tokens[i].t === "SEMI") i += 1;
+          return i;
+        }
+        if (t.t === "ID") {
+          const name = t.v;
+          i += 1;
+          if (i < tokens.length && tokens[i].t === "ASSIGN") {
+            i += 1;
+            const [val, j] = evalExpr(tokens, i);
+            i = j;
+            if (i < tokens.length && tokens[i].t === "SEMI") i += 1;
+            env.set(name, val);
+          }
+          return i;
+        }
+        if (t.t === "IF") {
+          i += 1;
+          if (i < tokens.length && tokens[i].t === "LPAREN") {
+            i += 1;
+            const [cond, j] = evalExpr(tokens, i);
+            i = j;
+            if (i < tokens.length && tokens[i].t === "RPAREN") i += 1;
+            if (i < tokens.length && tokens[i].t === ":") i += 1;
+            const origEnv = new Map(env);
+            if (cond) {
+              while (i < tokens.length && (tokens[i].t !== "ELSE")) {
+                i = runStmt(tokens, i);
+              }
+            } else {
+              while (i < tokens.length && (tokens[i].t !== "ELSE")) {
+                i = runStmt(tokens, i);
+              }
+              if (i < tokens.length && tokens[i].t === "ELSE") {
+                i += 1;
+                if (i < tokens.length && tokens[i].t === ":") i += 1;
+                while (i < tokens.length) {
+                  i = runStmt(tokens, i);
+                }
+              }
+            }
+            if (i < tokens.length && tokens[i].t === "ELSE") {
+              i += 1;
+              if (i < tokens.length && tokens[i].t === ":") i += 1;
+              while (i < tokens.length) {
+                i = runStmt(tokens, i);
+              }
+            }
+            // Restore env after if block if you want proper scoping later
+          }
+          return i;
+        }
+        if (t.t === "WHILE") {
+          i += 1;
+          if (i < tokens.length && tokens[i].t === "LPAREN") {
+            i += 1;
+            const parenStart = i;
+            while (i < tokens.length && tokens[i].t !== "RPAREN") i += 1;
+            if (i < tokens.length) i += 1; // skip RPAREN
+            if (i < tokens.length && tokens[i].t === ":") i += 1;
+
+            // Simplified: avoid deep loops in browser (for demo only)
+            let iter = 0;
+            while (iter < 10) {
+              const condCode = tokens.slice(parenStart, i - 1);
+              const [cond] = evalExpr(condCode, 0);
+              if (!cond) break;
+
+              // Just run the rest of the tokens once for illustration
+              const old = i;
+              while (i < tokens.length) {
+                i = runStmt(tokens, i);
+              }
+              i = old;
+              iter += 1;
+            }
+          }
+          return i;
+        }
+        report("Unrecognized statement");
+        if (i < tokens.length && tokens[i].t === "SEMI") i += 1;
+        return i;
+      }
+
+      function runAll(code) {
+        const tokens = tokenize(code);
+        let i = 0;
+        while (i < tokens.length) {
+          if (tokens[i].t === "SEMI") i += 1;
+          i = runStmt(tokens, i);
+        }
+        return output.join("");
+      }
+
+      return runAll(code);
+    }
+
+    // DOM setup
+    const editor  = document.getElementById("cat-editor");
+    const output  = document.getElementById("cat-output");
+    const runBtn  = document.getElementById("run-cat");
+
+    runBtn.addEventListener("click", () => {
+  try {
+    const code = editor.value;
+    const result = evalCat(code);
+    output.textContent = result || "(no output)";
+  } catch (e) {
+    output.textContent = "Error: " + e.message;
+  }
+});
+</script>
 </body>
 </html>
